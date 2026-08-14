@@ -4,6 +4,21 @@ Code and processed datasets for evaluating how differences introduced by atmosph
 
 This repository accompanies the associated research article and provides the analysis workflow and processed data required to reproduce the main analyses reported in the manuscript.
 
+
+![UAV hyperspectral data preprocessing workflow](data/afx_preprocessing_workflow.svg)
+
+## Software environment
+
+| Software | Version | Main purpose |
+| --- | ---: | --- |
+| CaliGeoPRO | 2.2 | Radiometric calibration and geometric correction of the raw AFX flight-line data |
+| DROACOR | 2.1 | Radiative-transfer-model-based atmospheric correction |
+| ENVI | 6.0 | Image co-registration, flight-line mosaicking, layer stacking, and composite image generation |
+
+
+
+Module-level workflow for preprocessing Specim AFX10 and AFX17 UAV hyperspectral imagery and generating analysis-ready surface reflectance. Raw flight-line data and associated GNSS/IMU records were first radiometrically calibrated and geometrically corrected in CaliGeoPRO using sensor-specific calibration files, a boresight calibration report, and a digital elevation model. The resulting georeferenced at-sensor radiance cubes were independently converted to surface reflectance using DROACOR, single-panel empirical line calibration (ELC), and three-panel empirical line calibration (ELC₃). Identical spectral and spatial quality-control procedures were subsequently applied to all three reflectance products before plot-level spectral extraction. Solid arrows represent image products, whereas dashed arrows represent auxiliary calibration or quality-control information.
+
 ## Overview
 
 UAV hyperspectral imagery requires atmospheric correction before quantitative analysis. Although different atmospheric correction approaches may produce relatively small differences in surface reflectance, these differences can propagate into downstream products such as vegetation indices and crop-trait estimates.
