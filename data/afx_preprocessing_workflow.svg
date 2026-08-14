@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1060" viewBox="0 0 1800 1060">
+  <defs>
+    <style>
+      .stage { font: 700 25px Arial, Helvetica, sans-serif; fill: #17324D; }
+      .title { font: 700 29px Arial, Helvetica, sans-serif; fill: #15314B; }
+      .body { font: 22px Arial, Helvetica, sans-serif; fill: #253746; }
+      .small { font: 19px Arial, Helvetica, sans-serif; fill: #3C5061; }
+      .micro { font: 17px Arial, Helvetica, sans-serif; fill: #506474; }
+      .whiteTitle { font: 700 23px Arial, Helvetica, sans-serif; fill: white; }
+      .whiteBody { font: 19px Arial, Helvetica, sans-serif; fill: white; }
+      .box { stroke-width: 2.2; rx: 18; ry: 18; }
+      .arrow { fill: none; stroke: #516979; stroke-width: 4; marker-end: url(#arrow); }
+      .dash { fill: none; stroke: #8AA0AF; stroke-width: 3; stroke-dasharray: 10 9; marker-end: url(#arrowLight); }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#516979"/>
+    </marker>
+    <marker id="arrowLight" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#8AA0AF"/>
+    </marker>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#17324D" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+
+  <rect width="1800" height="1060" fill="#F7FAFC"/>
+  <rect x="56" y="36" width="1688" height="84" rx="20" fill="#EAF2F8"/>
+  <text x="900" y="87" class="title" text-anchor="middle">UAV hyperspectral data preprocessing and reflectance generation</text>
+  <text x="900" y="112" class="small" text-anchor="middle">Module-level workflow used for Specim AFX10/AFX17 imagery</text>
+
+  <!-- Stage headings -->
+  <text x="185" y="168" class="stage" text-anchor="middle">1  Data acquisition</text>
+  <text x="550" y="168" class="stage" text-anchor="middle">2  Sensor-level processing</text>
+  <text x="970" y="168" class="stage" text-anchor="middle">3  Atmospheric correction</text>
+  <text x="1415" y="168" class="stage" text-anchor="middle">4  Image assembly</text>
+  <text x="1645" y="168" class="stage" text-anchor="middle">5  Output</text>
+
+  <!-- Acquisition -->
+  <rect x="55" y="205" width="260" height="245" class="box" fill="#DCECF7" stroke="#5B93B6" filter="url(#shadow)"/>
+  <rect x="55" y="205" width="260" height="58" rx="18" fill="#39789F"/>
+  <path d="M55 245 h260 v18 h-260z" fill="#39789F"/>
+  <text x="185" y="242" class="whiteTitle" text-anchor="middle">UAV acquisition</text>
+  <text x="82" y="304" class="body">AFX10 / AFX17</text>
+  <text x="82" y="340" class="body">Raw flight-line data</text>
+  <text x="82" y="376" class="body">GNSS/IMU records</text>
+  <text x="82" y="412" class="body">Mission metadata</text>
+
+  <!-- Calibration inputs -->
+  <rect x="55" y="516" width="260" height="300" class="box" fill="#FFF8E8" stroke="#D5A84A"/>
+  <text x="185" y="558" class="stage" text-anchor="middle">Calibration inputs</text>
+  <line x1="82" y1="578" x2="288" y2="578" stroke="#D5A84A" stroke-width="2"/>
+  <text x="82" y="618" class="small">Radiometric LUT</text>
+  <text x="82" y="653" class="small">Wavelength / FWHM file</text>
+  <text x="82" y="688" class="small">FOV calibration file</text>
+  <text x="82" y="723" class="small">Boresight report</text>
+  <text x="82" y="758" class="small">Digital elevation model</text>
+  <text x="82" y="796" class="micro">Sensor-specific, versioned files</text>
+
+  <!-- Sensor processing -->
+  <rect x="385" y="205" width="330" height="245" class="box" fill="#E7F3EC" stroke="#5A9B77" filter="url(#shadow)"/>
+  <rect x="385" y="205" width="330" height="58" rx="18" fill="#3F845F"/>
+  <path d="M385 245 h330 v18 h-330z" fill="#3F845F"/>
+  <text x="550" y="242" class="whiteTitle" text-anchor="middle">CaliGeoPRO</text>
+  <text x="412" y="304" class="body">Radiometric calibration</text>
+  <text x="412" y="340" class="small">DN → at-sensor radiance</text>
+  <text x="412" y="385" class="body">Geometric correction</text>
+  <text x="412" y="421" class="small">GNSS/IMU + boresight + DEM</text>
+
+  <rect x="420" y="516" width="260" height="122" class="box" fill="#F0F7F3" stroke="#82AD94"/>
+  <text x="550" y="555" class="stage" text-anchor="middle">Intermediate product</text>
+  <text x="550" y="594" class="small" text-anchor="middle">Georeferenced radiance cubes</text>
+  <text x="550" y="622" class="micro" text-anchor="middle">(individual flight lines)</text>
+
+  <!-- Atmospheric correction branches -->
+  <rect x="800" y="205" width="340" height="190" class="box" fill="#E9E6F6" stroke="#7B6FB2" filter="url(#shadow)"/>
+  <rect x="800" y="205" width="340" height="58" rx="18" fill="#6655A0"/>
+  <path d="M800 245 h340 v18 h-340z" fill="#6655A0"/>
+  <text x="970" y="242" class="whiteTitle" text-anchor="middle">DROACOR (RTM)</text>
+  <text x="827" y="305" class="body">Metadata preparation</text>
+  <text x="827" y="341" class="body">libRadtran-based correction</text>
+  <text x="827" y="375" class="small">Radiance → surface reflectance</text>
+
+  <rect x="800" y="435" width="340" height="152" class="box" fill="#F5EAF2" stroke="#AF6D99" filter="url(#shadow)"/>
+  <rect x="800" y="435" width="340" height="54" rx="18" fill="#96517F"/>
+  <path d="M800 470 h340 v19 h-340z" fill="#96517F"/>
+  <text x="970" y="471" class="whiteTitle" text-anchor="middle">ELC</text>
+  <text x="970" y="529" class="body" text-anchor="middle">Single reference panel</text>
+  <text x="970" y="563" class="small" text-anchor="middle">Empirical linear calibration</text>
+
+  <rect x="800" y="627" width="340" height="152" class="box" fill="#F5EAF2" stroke="#AF6D99" filter="url(#shadow)"/>
+  <rect x="800" y="627" width="340" height="54" rx="18" fill="#96517F"/>
+  <path d="M800 662 h340 v19 h-340z" fill="#96517F"/>
+  <text x="970" y="663" class="whiteTitle" text-anchor="middle">ELC₃</text>
+  <text x="970" y="721" class="body" text-anchor="middle">White, gray &amp; black panels</text>
+  <text x="970" y="755" class="small" text-anchor="middle">Multi-point linear calibration</text>
+
+  <!-- ENVI image assembly -->
+  <rect x="1240" y="205" width="350" height="574" class="box" fill="#EAF3F6" stroke="#5790A4" filter="url(#shadow)"/>
+  <rect x="1240" y="205" width="350" height="58" rx="18" fill="#37788D"/>
+  <path d="M1240 245 h350 v18 h-350z" fill="#37788D"/>
+  <text x="1415" y="242" class="whiteTitle" text-anchor="middle">ENVI 6.0</text>
+  <text x="1270" y="335" class="body">Image co-registration</text>
+  <line x1="1270" y1="360" x2="1560" y2="360" stroke="#A9C4CE" stroke-width="2"/>
+  <text x="1270" y="430" class="body">Flight-line mosaicking</text>
+  <line x1="1270" y1="455" x2="1560" y2="455" stroke="#A9C4CE" stroke-width="2"/>
+  <text x="1270" y="525" class="body">AFX10/AFX17 layer stacking</text>
+  <line x1="1270" y1="550" x2="1560" y2="550" stroke="#A9C4CE" stroke-width="2"/>
+  <text x="1270" y="620" class="body">Composite image generation</text>
+  <rect x="1270" y="675" width="290" height="54" rx="12" fill="#D5E8EE"/>
+  <text x="1415" y="710" class="small" text-anchor="middle">Applied to each reflectance product</text>
+
+  <!-- Output -->
+  <rect x="1610" y="276" width="160" height="438" rx="28" fill="#224F68" stroke="#17394D" stroke-width="2"/>
+  <text x="1690" y="323" class="whiteTitle" text-anchor="middle">Analysis-</text>
+  <text x="1690" y="352" class="whiteTitle" text-anchor="middle">ready</text>
+  <text x="1690" y="381" class="whiteTitle" text-anchor="middle">reflectance</text>
+  <line x1="1638" y1="407" x2="1742" y2="407" stroke="#80B2C7" stroke-width="2"/>
+  <text x="1690" y="452" class="whiteBody" text-anchor="middle">ASD–UAV</text>
+  <text x="1690" y="478" class="whiteBody" text-anchor="middle">comparison</text>
+  <text x="1690" y="532" class="whiteBody" text-anchor="middle">Vegetation</text>
+  <text x="1690" y="558" class="whiteBody" text-anchor="middle">indices</text>
+  <text x="1690" y="612" class="whiteBody" text-anchor="middle">Crop-trait</text>
+  <text x="1690" y="638" class="whiteBody" text-anchor="middle">retrieval</text>
+  <text x="1690" y="681" class="micro" style="fill:#D8EDF5" text-anchor="middle">plot × date</text>
+
+  <!-- Main arrows -->
+  <path d="M315 328 H385" class="arrow"/>
+  <path d="M550 450 V516" class="arrow"/>
+  <path d="M680 577 H750 V300 H800" class="arrow"/>
+  <path d="M750 577 V511 H800" class="arrow"/>
+  <path d="M750 577 V703 H800" class="arrow"/>
+  <path d="M1140 300 H1192 V348 H1240" class="arrow"/>
+  <path d="M1140 511 H1192 V492 H1240" class="arrow"/>
+  <path d="M1140 703 H1192 V636 H1240" class="arrow"/>
+  <path d="M1590 492 H1610" class="arrow"/>
+
+  <!-- Calibration input links -->
+  <path d="M315 635 H350 V385 H385" class="dash"/>
+  <path d="M315 708 H760 V300 H800" class="dash"/>
+
+  <!-- QA bar -->
+  <rect x="55" y="872" width="1715" height="102" rx="18" fill="#EFF3F6" stroke="#A8B8C4" stroke-width="2"/>
+  <text x="89" y="913" class="stage">Quality assurance and traceability</text>
+  <text x="89" y="948" class="small">Flight-line completeness • processing logs • versioned calibration/configuration files • consistent processing settings across correction methods</text>
+  <path d="M185 816 V872" class="dash"/>
+  <path d="M550 638 V872" class="dash"/>
+  <path d="M970 779 V872" class="dash"/>
+  <path d="M1415 779 V872" class="dash"/>
+
+  <text x="900" y="1021" class="micro" text-anchor="middle">Solid arrows: image products  ·  Dashed arrows: auxiliary calibration or quality-control information</text>
+</svg>
